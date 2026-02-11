@@ -1,0 +1,39 @@
+@startuml
+title Airline Reservation System - Activity Diagram
+
+|User|
+start
+:Search for flights;
+
+|System|
+:Search available flights;
+
+repeat
+  :Check seat availability;
+  if (Seats available?) then (Yes)
+    :Add flight to list;
+  else (No)
+    :Skip flight;
+  endif
+repeat while (More flights?) is (Yes)
+
+:Display available flights;
+
+|User|
+:Select flight;
+:Enter passenger details;
+:Make payment;
+
+|System|
+if (Payment successful?) then (Yes)
+  fork
+    :Confirm booking;
+  fork again
+    :Generate ticket;
+  end fork
+else (No)
+  :Display payment failure;
+endif
+
+stop
+@enduml
